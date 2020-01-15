@@ -12,4 +12,8 @@ export class WeatherApiComponent implements OnInit {
   ngOnInit() {
   }
 
+  icaoCode: string;
+  onSubmit() {
+    console.log(this.icaoCode);
+  }
 }

@@ -1,1 +1,7 @@
-<p>weather-api works!</p>
+<p>Enter ICAO code below to view data</p>
+<form (submit)="onSubmit()">
+  <input [(ngModel)]="icaoCode" name="ICAO Code" maxlength="4">
+  <br />
+  <button type="submit">Submit</button>
+</form>
+<br />
