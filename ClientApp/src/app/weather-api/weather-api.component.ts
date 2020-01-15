@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-weather-api',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherApiComponent implements OnInit {
 
-  constructor() { }
+  private icaoCode: string;
+  private http: HttpClient;
+  private url: string;
+
+  constructor(private http2: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.http = http2;
+    this.url = baseUrl;
+  }
 
   ngOnInit() {
   }
 
-  icaoCode: string;
   onSubmit() {
-    console.log(this.icaoCode);
+    this.http.get<string>(this.url + "weatherapi?icaoCode=" + this.icaoCode).subscribe((response: any) => { console.log(response) }, error => console.error(error));
   }
 }
