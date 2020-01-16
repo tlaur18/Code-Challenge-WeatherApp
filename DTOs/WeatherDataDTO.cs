@@ -18,12 +18,12 @@ namespace MyWeatherApp.DTOs
 
     public class Conditions
     {
-        public string dateIssued { get; set; }
-        public double tempC { get; set; }
-        public double pressureHg { get; set; }
+        public string? dateIssued { get; set; }
+        public double? tempC { get; set; }
+        public double? pressureHg { get; set; }
         public Wind wind { get; set; }
         public Visibility visibility { get; set; }
-        public Period period { get; set; }
+        public Period? period { get; set; }
     }
 
     public class Forecast
@@ -39,13 +39,13 @@ namespace MyWeatherApp.DTOs
 
     public class Wind
     {
-        public double speedKts { get; set; }
-        public double gustSpeedKts { get; set; }
-        public double direction { get; set; }
+        public double? speedKts { get; set; }
+        public double? gustSpeedKts { get; set; }
+        public double? direction { get; set; }
     }
 
     public class Visibility
     {
-        public double distanceSm { get; set; }
+        public double? distanceSm { get; set; }
     }
 }

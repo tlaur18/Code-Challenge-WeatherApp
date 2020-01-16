@@ -30,7 +30,23 @@ export class WeatherApiComponent implements OnInit {
   onSubmit() {
     this.getData().subscribe((response: any) => {
       this.report = response["conditions"],
-        this.forecast = response["forecast"]["conditions"][0];
+        this.forecast = response["forecast"]["conditions"][0],
+        this.removeNulls(this.report),
+        this.removeNulls(this.forecast)
     }, error => console.error(error));
+  }
+
+  removeNulls(obj: any) {
+    let array = Object.values(obj);
+    for (var i = 0; i < array.length; i++) {
+      let currentObject = array[i];
+      if (typeof (currentObject) === "string") {
+        continue;
+      } else if (currentObject === null) {
+        obj[Object.keys(obj)[i]] = "Not specified."
+      } else if (Object.values(currentObject).length !== 0) {
+        this.removeNulls(currentObject);
+      }
+    }
   }
 }
