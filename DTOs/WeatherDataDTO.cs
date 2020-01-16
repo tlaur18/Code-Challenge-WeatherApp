@@ -23,11 +23,18 @@ namespace MyWeatherApp.DTOs
         public double pressureHg { get; set; }
         public Wind wind { get; set; }
         public Visibility visibility { get; set; }
+        public Period period { get; set; }
     }
 
     public class Forecast
     {
         public IList<Conditions> conditions { get; set; }
+    }
+
+    public class Period
+    {
+        public string dateStart { get; set; }
+        public string dateEnd { get; set; }
     }
 
     public class Wind
@@ -40,8 +47,5 @@ namespace MyWeatherApp.DTOs
     public class Visibility
     {
         public double distanceSm { get; set; }
-        public double distanceQualifier { get; set; }
-        public double prevailingVisSm { get; set; }
-        public double prevailingVisDistanceQualifier { get; set; }
     }
 }

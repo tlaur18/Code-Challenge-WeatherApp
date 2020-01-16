@@ -4,4 +4,37 @@
   <br />
   <button type="submit">Submit</button>
 </form>
+
+<h4>Report</h4>
+<label>Date issued: {{report["dateIssued"]}}</label>
 <br />
+<label>Temperature(°C): {{report["tempC"]}}</label>
+<br />
+<label>Pressure(Hg): {{report["pressureHg"]}}</label>
+<br />
+<label>Wind speed(Kts): {{report["wind"]["speedKts"]}}</label>
+<br />
+<label>Gust speed(Kts): {{report["wind"]["gustSpeedKts"]}}</label>
+<br />
+<label>Wind direction: {{report["wind"]["direction"]}}</label>
+<br />
+<label>Visibility distance sm: {{report["visibility"]["distanceSm"]}}</label>
+
+<h4>Forecast</h4>
+<label>Date issued: {{forecast["dateIssued"]}}</label>
+<br />
+<label>Valid from: {{forecast["period"]["dateStart"]}}</label>
+<br />
+<label>Valid to: {{forecast["period"]["dateEnd"]}}</label>
+<br />
+<label>Temperature(°C): {{forecast["tempC"]}}</label>
+<br />
+<label>Pressure(Hg): {{forecast["pressureHg"]}}</label>
+<br />
+<label>Wind speed(Kts): {{forecast["wind"]["speedKts"]}}</label>
+<br />
+<label>Gust speed(Kts): {{forecast["wind"]["gustSpeedKts"]}}</label>
+<br />
+<label>Wind direction: {{forecast["wind"]["direction"]}}</label>
+<br />
+<label>Visibility distance sm: {{forecast["visibility"]["distanceSm"]}}</label>

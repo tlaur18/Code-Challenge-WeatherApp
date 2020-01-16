@@ -12,6 +12,9 @@ export class WeatherApiComponent implements OnInit {
   private http: HttpClient;
   private url: string;
 
+  report;
+  forecast;
+
   constructor(private http2: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http2;
     this.url = baseUrl;
@@ -20,7 +23,14 @@ export class WeatherApiComponent implements OnInit {
   ngOnInit() {
   }
 
+  getData() {
+    return this.http.get(this.url + "weatherapi?icaoCode=" + this.icaoCode);
+  }
+
   onSubmit() {
-    this.http.get<string>(this.url + "weatherapi?icaoCode=" + this.icaoCode).subscribe((response: any) => { console.log(response) }, error => console.error(error));
+    this.getData().subscribe((response: any) => {
+      this.report = response["conditions"],
+        this.forecast = response["forecast"]["conditions"][0];
+    }, error => console.error(error));
   }
 }
