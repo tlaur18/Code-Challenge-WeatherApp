@@ -12,6 +12,7 @@ export class WeatherApiComponent implements OnInit {
   private http: HttpClient;
   private url: string;
 
+  submitted = false;
   report;
   forecast;
 
@@ -32,7 +33,8 @@ export class WeatherApiComponent implements OnInit {
       this.report = response["conditions"],
         this.forecast = response["forecast"]["conditions"][0],
         this.removeNulls(this.report),
-        this.removeNulls(this.forecast)
+        this.removeNulls(this.forecast),
+        this.submitted = true;
     }, error => console.error(error));
   }
 

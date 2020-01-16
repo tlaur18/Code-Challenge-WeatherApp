@@ -1,40 +1,91 @@
 <p>Enter ICAO code below to view data</p>
 <form (submit)="onSubmit()">
-  <input [(ngModel)]="icaoCode" name="ICAO Code" maxlength="4">
-  <br />
-  <button type="submit">Submit</button>
+  <input id="icaoInput" name="icaoInput" class="form-control"
+         required minlength="4" maxlength="4"
+         [(ngModel)]="icaoCode" #icaoInput="ngModel">
+  <button type="submit" [disabled]="icaoInput.invalid">Submit</button>
+  <div *ngIf="icaoInput.invalid && (icaoInput.dirty || icaoInput.touched)" class="alert alert-danger">
+    <div *ngIf="icaoInput.errors.required">
+      ICAO code is required.
+    </div>
+    <div *ngIf="icaoInput.errors.minlength">
+      ICAO code must be 4 characters long.
+    </div>
+  </div>
 </form>
 
-<h4>Report</h4>
-<label>Date issued: {{report["dateIssued"]}}</label>
-<br />
-<label>Temperature(°C): {{report["tempC"]}}</label>
-<br />
-<label>Pressure(Hg): {{report["pressureHg"]}}</label>
-<br />
-<label>Wind speed(Kts): {{report["wind"]["speedKts"]}}</label>
-<br />
-<label>Gust speed(Kts): {{report["wind"]["gustSpeedKts"]}}</label>
-<br />
-<label>Wind direction: {{report["wind"]["direction"]}}</label>
-<br />
-<label>Visibility distance sm: {{report["visibility"]["distanceSm"]}}</label>
+<div *ngIf="submitted">
+  <h4>Report</h4>
+  <table>
+    <tr>
+      <td>Date issued</td>
+      <td>{{report["dateIssued"]}}</td>
+    </tr>
+    <tr>
+      <td>Temperature(°C)</td>
+      <td>{{report["tempC"]}}</td>
+    </tr>
+    <tr>
+      <td>Pressure(Hg)</td>
+      <td>{{report["pressureHg"]}}</td>
+    </tr>
+    <tr>
+      <td>Wind speed(Kts)</td>
+      <td>{{report["wind"]["speedKts"]}}</td>
+    </tr>
+    <tr>
+      <td>Gust speed(Kts)</td>
+      <td>{{report["wind"]["gustSpeedKts"]}}</td>
+    </tr>
+    <tr>
+      <td>Wind direction</td>
+      <td>{{report["wind"]["direction"]}}</td>
+    </tr>
+    <tr>
+      <td>Visibility distance</td>
+      <td>{{report["visibility"]["distanceSm"]}}</td>
+    </tr>
+  </table>
 
-<h4>Forecast</h4>
-<label>Date issued: {{forecast["dateIssued"]}}</label>
-<br />
-<label>Valid from: {{forecast["period"]["dateStart"]}}</label>
-<br />
-<label>Valid to: {{forecast["period"]["dateEnd"]}}</label>
-<br />
-<label>Temperature(°C): {{forecast["tempC"]}}</label>
-<br />
-<label>Pressure(Hg): {{forecast["pressureHg"]}}</label>
-<br />
-<label>Wind speed(Kts): {{forecast["wind"]["speedKts"]}}</label>
-<br />
-<label>Gust speed(Kts): {{forecast["wind"]["gustSpeedKts"]}}</label>
-<br />
-<label>Wind direction: {{forecast["wind"]["direction"]}}</label>
-<br />
-<label>Visibility distance: {{forecast["visibility"]["distanceSm"]}}</label>
+  <h4>Forecast</h4>
+  <table>
+    <tr>
+      <td>Date issued</td>
+      <td>{{forecast["dateIssued"]}}</td>
+    </tr>
+    <tr>
+      <td>Valid from</td>
+      <td>{{forecast["period"]["dateStart"]}}</td>
+    </tr>
+    <tr>
+      <td>Valid to</td>
+      <td>{{forecast["period"]["dateEnd"]}}</td>
+    </tr>
+    <tr>
+      <td>Temperature(°C)</td>
+      <td>{{forecast["tempC"]}}</td>
+    </tr>
+    <tr>
+      <td>Pressure(Hg)</td>
+      <td>{{forecast["pressureHg"]}}</td>
+    </tr>
+    <tr>
+      <td>Wind speed(Kts)</td>
+      <td>{{forecast["wind"]["speedKts"]}}</td>
+    </tr>
+    <tr>
+      <td>Gust speed(Kts)</td>
+      <td>{{forecast["wind"]["gustSpeedKts"]}}</td>
+    </tr>
+    <tr>
+      <td>Wind direction</td>
+      <td>{{forecast["wind"]["direction"]}}</td>
+    </tr>
+    <tr>
+      <td>Visibility distance</td>
+      <td>{{forecast["visibility"]["distanceSm"]}}</td>
+    </tr>
+  </table>
+</div>
+
+
