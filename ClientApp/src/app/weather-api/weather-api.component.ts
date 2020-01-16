@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,22 +6,21 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './weather-api.component.html',
   styleUrls: ['./weather-api.component.css']
 })
-export class WeatherApiComponent implements OnInit {
+export class WeatherApiComponent {
 
   private icaoCode: string;
   private http: HttpClient;
   private url: string;
 
-  submitted = false;
+  submitted: boolean = false;
+  errorResponse: boolean = false;
+
   report;
   forecast;
 
   constructor(private http2: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http2;
     this.url = baseUrl;
-  }
-
-  ngOnInit() {
   }
 
   getData() {
@@ -35,7 +34,14 @@ export class WeatherApiComponent implements OnInit {
         this.removeNulls(this.report),
         this.removeNulls(this.forecast),
         this.submitted = true;
-    }, error => console.error(error));
+    }, error => {
+      this.errorResponse = true,
+        this.submitted = false
+    });
+  }
+
+  onChange(newValue: any) {
+    this.errorResponse = false;
   }
 
   removeNulls(obj: any) {

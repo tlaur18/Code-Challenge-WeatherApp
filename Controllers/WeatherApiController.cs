@@ -34,7 +34,7 @@ namespace MyWeatherApp.Controllers
             }
             else
             {
-                throw new HttpListenerException((int)apiResponse.StatusCode, apiResponse.ReasonPhrase);
+                return NotFound();
             }
         }
     }
